@@ -1,7 +1,46 @@
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Form, Button } from "react-bootstrap";
 import "../styles/login.css";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FormValues } from "../types";
+import { FormEvent } from "react";
 
 const Login = () => {
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const logIn = async (formValues: FormValues) => {
+    try {
+      const apiUrl = process.env.REACT_APP_BE_URL;
+      const res = await fetch(`${apiUrl}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setToken(data.accessToken);
+        localStorage.setItem("token", data.accessToken);
+        console.log(data.accessToken);
+      } else {
+        console.error("Error logging in:");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    logIn(formValues);
+    navigate("/main");
+    // Handle form submission
+  };
   return (
     <>
       <Container id="login-parent">
@@ -28,7 +67,60 @@ const Login = () => {
               WHATSAPP WEB
             </span>
           </div>
-          <div id="login-form">Login</div>
+          <div id="login-form">
+            {" "}
+            <div
+              className="d-flex flex-column justify-content-center align-items-center"
+              id="login-form"
+            >
+              <Form onSubmit={handleSubmit} className="text-center mb-3">
+                <Form.Group controlId="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={formValues.email}
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, email: e.target.value })
+                    }
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={formValues.password}
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, password: e.target.value })
+                    }
+                  />
+                </Form.Group>
+
+                <Button className="my-2" type="submit" id="login-submit">
+                  Submit
+                </Button>
+                <p>
+                  If you don't have an account yet click here to{" "}
+                  <Link to={"/register"}>register</Link>
+                </p>
+              </Form>
+              <a href={"http://localhost:3001/users/googleLogin"}>
+                <button
+                  id="google-button"
+                  //   onClick={handleLoginGoogle}
+                >
+                  <img
+                    src="https://img.icons8.com/color/16/000000/google-logo.png"
+                    alt="Google logo"
+                    style={{ marginRight: "10px" }}
+                  />
+                  <span>Log in with Google</span>
+                </button>
+              </a>
+            </div>
+          </div>
         </Row>
       </Container>
     </>

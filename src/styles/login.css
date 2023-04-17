@@ -1,16 +1,48 @@
-#login-form {
+#login-form,
+#register-form {
   background-color: white;
-  height: 50vh;
+  height: 70vh;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 3px;
 
   /* box-shadow: ; */
 }
-#login-parent {
+#register-form form {
+  width: 50%;
+}
+#login-parent,
+#register-parent {
   position: relative;
   top: -100px;
   justify-content: center;
   width: 60%;
   margin-inline: auto;
+}
+#google-button {
+  background-color: #fff;
+  color: #737373;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0.5px solid #7373737c;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#google-button:hover a {
+  text-decoration: none !important;
+}
+#login-submit,
+#register-submit {
+  background-color: #00a884;
+  border: none;
+  margin-inline: auto;
+}
+#login-submit:hover,
+#register-submit:hover {
+  background-color: #07d1a5;
 }
