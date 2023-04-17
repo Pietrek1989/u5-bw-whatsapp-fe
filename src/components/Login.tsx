@@ -26,8 +26,9 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
         setToken(data.accessToken);
-        localStorage.setItem("token", data.accessToken);
-        console.log(data.accessToken);
+        console.log(data);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
       } else {
         console.error("Error logging in:");
       }
