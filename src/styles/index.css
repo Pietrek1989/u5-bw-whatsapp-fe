@@ -1,0 +1,15 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+#parent-container {
+  height: 100vh;
+}
+#top-bg {
+  height: 25%;
+  background-color: #00a884;
+}
+
+#lower-bg {
+  height: 75%;
+  background-color: #f0f2f5;
+}
