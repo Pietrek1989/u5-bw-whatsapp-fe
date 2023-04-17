@@ -16,7 +16,7 @@ const Login = () => {
   const logIn = async (formValues: FormValues) => {
     try {
       const apiUrl = process.env.REACT_APP_BE_URL;
-      const res = await fetch(`${apiUrl}/users/login`, {
+      const res = await fetch(`${apiUrl}/users/session`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

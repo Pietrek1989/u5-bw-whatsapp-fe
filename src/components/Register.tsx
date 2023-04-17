@@ -16,7 +16,7 @@ const Register = () => {
   const register = async (formValues: FormValuesRegister) => {
     try {
       const apiUrl = process.env.REACT_APP_BE_URL;
-      const res = await fetch(`${apiUrl}/users/register`, {
+      const res = await fetch(`${apiUrl}/users/account`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
