@@ -12,6 +12,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_BE_URL as String;
+
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const logIn = async (formValues: FormValues) => {
     try {
@@ -106,7 +107,7 @@ const Login = () => {
                   <Link to={"/register"}>register</Link>
                 </p>
               </Form>
-              <a href={`${apiUrl}/users/googleLogin`}>
+              <a href={`${apiUrl}/users/googlelogin`}>
                 <button
                   id="google-button"
                   //   onClick={handleLoginGoogle}
