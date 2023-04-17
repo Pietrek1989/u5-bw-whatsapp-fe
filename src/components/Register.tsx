@@ -115,19 +115,6 @@ const Register = () => {
                   Go back to <Link to={"/"}>Login Page</Link>
                 </p>
               </Form>
-              <a href={"http://localhost:3001/users/googleLogin"}>
-                <button
-                  id="google-button"
-                  //   onClick={handleLoginGoogle}
-                >
-                  <img
-                    src="https://img.icons8.com/color/16/000000/google-logo.png"
-                    alt="Google logo"
-                    style={{ marginRight: "10px" }}
-                  />
-                  <span>Log in with Google</span>
-                </button>
-              </a>
             </div>
           </div>
         </Row>

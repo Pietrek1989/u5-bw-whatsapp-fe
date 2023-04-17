@@ -11,11 +11,10 @@ const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
-
+  const apiUrl = process.env.REACT_APP_BE_URL as String;
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const logIn = async (formValues: FormValues) => {
     try {
-      const apiUrl = process.env.REACT_APP_BE_URL;
       const res = await fetch(`${apiUrl}/users/session`, {
         method: "POST",
         headers: {
@@ -107,7 +106,7 @@ const Login = () => {
                   <Link to={"/register"}>register</Link>
                 </p>
               </Form>
-              <a href={"http://localhost:3001/users/googleLogin"}>
+              <a href={`${apiUrl}/users/googleLogin`}>
                 <button
                   id="google-button"
                   //   onClick={handleLoginGoogle}
