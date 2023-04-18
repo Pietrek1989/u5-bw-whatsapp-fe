@@ -10,6 +10,7 @@ const ContactsList: React.FC = () => {
         if (localStorage.getItem("accessToken")) {
             dispatch(getChats())
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localStorage])
 
     return (
