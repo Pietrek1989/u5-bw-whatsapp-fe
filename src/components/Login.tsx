@@ -6,6 +6,7 @@ import { FormValues } from "../types";
 import { FormEvent } from "react";
 
 const Login = () => {
+
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -29,6 +30,7 @@ const Login = () => {
         console.log(data);
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
+        navigate("/main");
       } else {
         console.error("Error logging in:");
       }
@@ -39,7 +41,6 @@ const Login = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     logIn(formValues);
-    navigate("/main");
     // Handle form submission
   };
   return (
