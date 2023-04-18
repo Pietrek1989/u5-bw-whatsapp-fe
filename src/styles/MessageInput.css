@@ -7,25 +7,22 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.message-input textarea {
+.message-input input {
     flex-grow: 1;
     border: none;
     border-radius: 20px;
     padding: 10px 15px;
     outline: none;
-    resize: none;
+    background-color: white;
+    margin: 0 10px;
     font-size: 14px;
 }
 
-.message-input button {
-    background: none;
-    border: none;
+.icon {
     font-size: 20px;
-    color: #075e54;
     cursor: pointer;
-    margin-left: 10px;
 }
 
-.message-input button:hover {
+.icon:hover {
     opacity: 0.8;
 }
