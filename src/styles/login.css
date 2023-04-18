@@ -8,9 +8,11 @@
 
   /* box-shadow: ; */
 }
+
 #register-form form {
   width: 50%;
 }
+
 #login-parent,
 #register-parent {
   position: relative;
@@ -19,6 +21,7 @@
   width: 60%;
   margin-inline: auto;
 }
+
 #google-button {
   background-color: #fff;
   color: #737373;
@@ -36,12 +39,14 @@
 #google-button:hover a {
   text-decoration: none !important;
 }
+
 #login-submit,
 #register-submit {
   background-color: #00a884;
   border: none;
   margin-inline: auto;
 }
+
 #login-submit:hover,
 #register-submit:hover {
   background-color: #07d1a5;
