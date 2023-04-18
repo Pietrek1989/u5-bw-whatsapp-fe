@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 import type {PayloadAction} from "@reduxjs/toolkit"
 import { Store } from "../interface"
 import { Chat, Message, User } from "../../interfaces"
-import { getUserData } from "../actions"
+import { getChats, getUserData } from "../actions"
 
 const initialState: Store = {
     userInfo: {
@@ -54,6 +54,9 @@ export const userSlice = createSlice({
             state.error = action.error.message
             state.loading = false
             state.userInfo = {_id: "", name: "", email: "", avatar: "",}
+        })
+        builder.addCase(getChats.fulfilled, (state, action) => {
+            state.chats.list = action.payload
         })
     }
 })
