@@ -30,7 +30,9 @@ const MainPage: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem("accessToken")) {
+      fetchData() //this obviously can't stay, is just for testing purposes
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
