@@ -1,8 +1,6 @@
 .sidebar {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 300px;
-    /* Adjust the width according to your desired sidebar size */
     border-right: 1px solid #ccc;
-    /* Optional: add a border if you'd like */
 }
