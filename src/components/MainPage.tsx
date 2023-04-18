@@ -8,63 +8,61 @@ import ChatHeader from '../components/chat/ChatHeader';
 import MessageList from '../components/chat/MessageList';
 import MessageInput from '../components/chat/MeassageInput';
 
-const MainPage = () => {
-  const dispatch = useAppDispatch()
+interface ChatPartner {
+  name: string;
+  avatar: string;
+}
 
-  const bla = async () => {
-    const data1 = await dispatch(getUserData())
-    console.log("dispatch shenanigans", data1)
+interface Message {
+  sender: string;
+  content: string;
+  timestamp: string;
+}
 
-    await dispatch(setActiveChat("1"))
-  }
+const MainPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const fetchData = async () => {
+    const data1 = await dispatch(getUserData());
+    console.log("dispatch shenanigans", data1);
+
+    await dispatch(setActiveChat("1"));
+  };
 
   useEffect(() => {
-    bla() //this obviously can't stay, is just for testing purposes
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localStorage])
+  }, []);
 
-  interface ChatPartner {
-    name: string;
-    avatar: string;
-  }
+  const chatPartner: ChatPartner = {
+    name: 'John Doe',
+    avatar: 'https://example.com/avatar.jpg',
+  };
 
-  interface Message {
-    sender: string;
-    content: string;
-    timestamp: string;
-  }
+  const messages: Message[] = [
+    // Sample messages data
+  ];
 
-  const MainPage: React.FC = () => {
-    const chatPartner: ChatPartner = {
-      name: 'John Doe',
-      avatar: 'https://example.com/avatar.jpg',
-    };
+  const currentUser = 'Jane Smith';
 
-    const messages: Message[] = [
-      // Sample messages data
-    ];
+  const sendMessage = (messageContent: string) => {
+    // Handle sending a message
+  };
 
-    const currentUser = 'Jane Smith';
-
-    const sendMessage = (messageContent: string) => {
-      // Handle sending a message
-    };
-
-    return (
-      <Container fluid>
-        <Row>
-          <Col sm={4} md={3} lg={2} className="sidebar">
-            <Sidebar />
-          </Col>
-          <Col sm={8} md={9} lg={10} className="main-chat-window">
-            <ChatHeader chatPartnerName={chatPartner.name} chatPartnerAvatar={chatPartner.avatar} />
-            <MessageList messages={messages} currentUser={currentUser} />
-            <MessageInput sendMessage={sendMessage} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+  return (
+    <Container fluid>
+      <Row>
+        <Col sm={4} md={3} lg={2} className="sidebar">
+          <Sidebar />
+        </Col>
+        <Col sm={8} md={9} lg={10} className="main-chat-window">
+          <ChatHeader chatPartnerName={chatPartner.name} chatPartnerAvatar={chatPartner.avatar} />
+          <MessageList messages={messages} currentUser={currentUser} />
+          <MessageInput sendMessage={sendMessage} />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default MainPage;
