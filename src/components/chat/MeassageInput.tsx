@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../../styles/MessageInput.css'
+import { BsEmojiLaughing, BsMic, BsPaperclip } from 'react-icons/bs'
+import '../../styles/MessageInput.css';
 
 interface MessageInputProps {
     sendMessage: (messageContent: string) => void;
@@ -22,13 +23,15 @@ const MessageInput: React.FC<MessageInputProps> = ({ sendMessage }) => {
 
     return (
         <form className="message-input" onSubmit={handleSubmit}>
+            <BsEmojiLaughing className="icon" />
+            <BsPaperclip className="icon" />
             <input
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Type a message..."
             />
-            <button type="submit">Send</button>
+            <BsMic className="icon" />
         </form>
     );
 };
