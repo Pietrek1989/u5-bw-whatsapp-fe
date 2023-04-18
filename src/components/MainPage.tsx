@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
-import { Container, Row, Col } from 'react-bootstrap';
-import Sidebar from './Sidebar/SideBar';
-import ChatHeader from '../components/chat/ChatHeader';
-import MessageList from '../components/chat/MessageList';
-import MessageInput from '../components/chat/MeassageInput';
+import { Container, Row, Col } from "react-bootstrap";
+import Sidebar from "./Sidebar/SideBar";
+import ChatHeader from "../components/chat/ChatHeader";
+import MessageList from "../components/chat/MessageList";
+import MessageInput from "../components/chat/MeassageInput";
 
 interface ChatPartner {
   name: string;
@@ -31,34 +31,37 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
-      fetchData() //this obviously can't stay, is just for testing purposes
+      fetchData(); //this obviously can't stay, is just for testing purposes
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const chatPartner: ChatPartner = {
-    name: 'John Doe',
-    avatar: 'https://example.com/avatar.jpg',
+    name: "John Doe",
+    avatar: "https://example.com/avatar.jpg",
   };
 
   const messages: Message[] = [
     // Sample messages data
   ];
 
-  const currentUser = 'Jane Smith';
+  const currentUser = "Jane Smith";
 
   const sendMessage = (messageContent: string) => {
     // Handle sending a message
   };
 
   return (
-    <Container fluid>
+    <Container fluid id="chat-container">
       <Row>
         <Col sm={4} md={3} lg={2} className="sidebar">
           <Sidebar />
         </Col>
         <Col sm={8} md={9} lg={10} className="main-chat-window">
-          <ChatHeader chatPartnerName={chatPartner.name} chatPartnerAvatar={chatPartner.avatar} />
+          <ChatHeader
+            chatPartnerName={chatPartner.name}
+            chatPartnerAvatar={chatPartner.avatar}
+          />
           <MessageList messages={messages} currentUser={currentUser} />
           <MessageInput sendMessage={sendMessage} />
         </Col>
