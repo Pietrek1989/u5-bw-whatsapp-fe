@@ -18,7 +18,6 @@ const MessageList: React.FC<MessageListProps> = ({ messages, currentUser }) => {
     const active = useAppSelector(state => state.users.chats.active)
     const msgToDisplay = msgs.find(c => c._id === active)
     const userId = useAppSelector(state => state.users.userInfo?._id)
-    console.log(msgToDisplay?.messages[1].sender, userId, msgToDisplay?.messages[1].sender === userId)
     return (
         <div className="message-list">
             {msgToDisplay?.messages.map((message, index) => (
