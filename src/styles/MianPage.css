@@ -1,13 +1,12 @@
 .sidebar {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 .main-chat-window {
-    position: relative;
-    z-index: 0;
-    min-height: 100vh;
-    background-color: #f8f9fa;
-
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
