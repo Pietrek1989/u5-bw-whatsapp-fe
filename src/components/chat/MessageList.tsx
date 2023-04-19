@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/MessageList.css';
 
 interface Message {
     sender: string;

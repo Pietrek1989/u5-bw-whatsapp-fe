@@ -45,7 +45,6 @@ const Header: React.FC = () => {
           className="avatar"
           onClick={handleOpenProfile}
         />
-        <button onClick={handleOpenProfile}>BUTTON</button>
         {isProfileOpen && (
           <div className={`edit-profile${isProfileOpen ? " show" : ""}`}>
             <EditProfile handleClose={handleCloseProfile} />

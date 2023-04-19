@@ -1,9 +1,6 @@
-.header {
-  height: 100%;
-}
 .edit-profile {
   position: absolute;
-  height: 100%;
+  height: 90vh;
   width: 100%;
   left: -100px;
   z-index: 9999;
