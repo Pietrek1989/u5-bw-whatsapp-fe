@@ -1,26 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/Header.css";
 import { IoPeopleOutline } from "react-icons/io5";
 import { BsPencilSquare } from "react-icons/bs";
 import { TbVectorBezierCircle } from "react-icons/tb";
 import { SlArrowDown } from "react-icons/sl";
 import EditProfile from "./EditProfile";
-import { Modal } from "react-bootstrap";
-import { useState } from "react";
-
-interface User {
-  name: string;
-  avatar?: string;
-}
-
-const user: User = {
-  name: "Amirreza",
-  avatar:
-    "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
-};
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { userInterface } from "../../types";
 
 const Header: React.FC = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const userInfo = useSelector((state: RootState) => state.users.userInfo) as userInterface;
 
   const handleOpenProfile = () => {
     setIsProfileOpen(true);
@@ -29,6 +20,7 @@ const Header: React.FC = () => {
   const handleCloseProfile = () => {
     setIsProfileOpen(false);
   };
+
   return (
     <div className="header bg-white">
       <div
@@ -36,8 +28,8 @@ const Header: React.FC = () => {
         style={{ width: "200px" }}
       >
         <img
-          src={user.avatar}
-          alt={user.name}
+          src={userInfo?.avatar || "https://placekitten.com/300/300"}
+          alt={userInfo?.name || "User"}
           className="avatar"
           onClick={handleOpenProfile}
         />
