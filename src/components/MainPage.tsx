@@ -42,7 +42,10 @@ const MainPage: React.FC = () => {
   };
 
   const messages: Message[] = [
-    // Sample messages data
+    { sender: 'Jane Smith', content: 'Hey, how are you?', timestamp: '10:15 AM' },
+    { sender: 'John Doe', content: 'I am good. How about you?', timestamp: '10:16 AM' },
+    { sender: 'Jane Smith', content: 'Doing well, thanks!', timestamp: '10:17 AM' },
+    { sender: 'John Doe', content: 'Great! Have a nice day.', timestamp: '10:18 AM' },
   ];
 
   const currentUser = "Jane Smith";
