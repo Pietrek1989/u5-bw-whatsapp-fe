@@ -12,6 +12,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_BE_URL as String;
+  const [isIncorrect, setIsIncorrect] = useState(false);
 
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const logIn = async (formValues: FormValues) => {
@@ -27,11 +28,15 @@ const Login = () => {
         const data = await res.json();
         setToken(data.accessToken);
         console.log(data);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        setIsIncorrect(false);
         navigate(
           `/main?accessToken=${data.accessToken}&refreshToken=${data.refreshToken}`
         );
       } else {
         console.error("Error logging in:");
+        setIsIncorrect(true);
       }
     } catch (error) {
       console.error(error);
@@ -107,6 +112,9 @@ const Login = () => {
                   <Link to={"/register"}>register</Link>
                 </p>
               </Form>
+              {isIncorrect && (
+                <p className="text-danger">Wrong password, try again!</p>
+              )}
               <a href={`${apiUrl}/users/googlelogin`}>
                 <button
                   id="google-button"
