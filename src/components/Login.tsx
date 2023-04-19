@@ -6,7 +6,6 @@ import { FormValues } from "../types";
 import { FormEvent } from "react";
 
 const Login = () => {
-
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -28,9 +27,9 @@ const Login = () => {
         const data = await res.json();
         setToken(data.accessToken);
         console.log(data);
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("refreshToken", data.refreshToken);
-        navigate("/main");
+        navigate(
+          `/main?accessToken=${data.accessToken}&refreshToken=${data.refreshToken}`
+        );
       } else {
         console.error("Error logging in:");
       }
@@ -111,7 +110,7 @@ const Login = () => {
               <a href={`${apiUrl}/users/googlelogin`}>
                 <button
                   id="google-button"
-                //   onClick={handleLoginGoogle}
+                  //   onClick={handleLoginGoogle}
                 >
                   <img
                     src="https://img.icons8.com/color/16/000000/google-logo.png"

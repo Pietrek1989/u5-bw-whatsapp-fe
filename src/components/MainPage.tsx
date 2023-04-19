@@ -28,6 +28,15 @@ const MainPage: React.FC = () => {
 
     await dispatch(setActiveChat("1"));
   };
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessToken = urlParams.get("accessToken");
+    const refreshToken = urlParams.get("refreshToken");
+    if (accessToken && refreshToken) {
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+    }
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
