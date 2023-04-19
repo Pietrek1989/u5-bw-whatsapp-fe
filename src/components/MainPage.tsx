@@ -51,10 +51,26 @@ const MainPage: React.FC = () => {
   };
 
   const messages: Message[] = [
-    { sender: 'Jane Smith', content: 'Hey, how are you?', timestamp: '10:15 AM' },
-    { sender: 'John Doe', content: 'I am good. How about you?', timestamp: '10:16 AM' },
-    { sender: 'Jane Smith', content: 'Doing well, thanks!', timestamp: '10:17 AM' },
-    { sender: 'John Doe', content: 'Great! Have a nice day.', timestamp: '10:18 AM' },
+    {
+      sender: "Jane Smith",
+      content: "Hey, how are you?",
+      timestamp: "10:15 AM",
+    },
+    {
+      sender: "John Doe",
+      content: "I am good. How about you?",
+      timestamp: "10:16 AM",
+    },
+    {
+      sender: "Jane Smith",
+      content: "Doing well, thanks!",
+      timestamp: "10:17 AM",
+    },
+    {
+      sender: "John Doe",
+      content: "Great! Have a nice day.",
+      timestamp: "10:18 AM",
+    },
   ];
 
   const currentUser = "Jane Smith";
@@ -69,7 +85,13 @@ const MainPage: React.FC = () => {
         <Col sm={4} md={3} lg={2} className="sidebar">
           <Sidebar />
         </Col>
-        <Col sm={8} md={9} lg={10} className="main-chat-window">
+        <Col
+          sm={8}
+          md={9}
+          lg={10}
+          className="main-chat-window"
+          style={{ paddingLeft: 0 }}
+        >
           <ChatHeader
             chatPartnerName={chatPartner.name}
             chatPartnerAvatar={chatPartner.avatar}
