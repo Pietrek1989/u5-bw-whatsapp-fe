@@ -1,3 +1,4 @@
 .contacts-list {
-    overflow-y: auto;
+  overflow-y: auto;
+  min-height: 80%;
 }
