@@ -7,6 +7,8 @@ import { SlArrowDown } from "react-icons/sl";
 import EditProfile from "./EditProfile";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface User {
   name: string;
@@ -20,6 +22,8 @@ const user: User = {
 };
 
 const Header: React.FC = () => {
+  const userInfo = useSelector((state: RootState) => state.users.userInfo);
+
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleOpenProfile = () => {
@@ -36,8 +40,8 @@ const Header: React.FC = () => {
         style={{ width: "200px" }}
       >
         <img
-          src={user.avatar}
-          alt={user.name}
+          src={userInfo?.avatar ? userInfo.avatar : user.avatar}
+          alt={userInfo?.name ? userInfo.name : user.name}
           className="avatar"
           onClick={handleOpenProfile}
         />

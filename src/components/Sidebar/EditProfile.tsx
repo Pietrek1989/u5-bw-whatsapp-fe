@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { getUserData } from "../../redux/actions";
+import { setUserInfo } from "../../redux/reducers";
 type EditProfileProps = {
   handleClose: () => void;
 };
@@ -27,7 +28,7 @@ const EditProfile = (props: EditProfileProps) => {
     return localStorage.getItem("accessToken");
   };
   useEffect(() => {
-    getUserData();
+    getMe();
     updateUser({
       name: userInfo?.name,
       email: userInfo?.email,
@@ -63,7 +64,9 @@ const EditProfile = (props: EditProfileProps) => {
             },
           }
         );
-        updateUser(response.data);
+        console.log(response.data);
+        getMe();
+        await updateUser(response.data);
         UpdateName();
       } catch (error) {
         console.error(error);
@@ -83,8 +86,25 @@ const EditProfile = (props: EditProfileProps) => {
       });
       const data = await res.json();
       console.log(data);
-      getUserData();
-      updateUser(data);
+      getMe();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMe = async () => {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BE_URL}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+      } else {
+        console.error("Error getting stories:");
+      }
     } catch (error) {
       console.log(error);
     }
