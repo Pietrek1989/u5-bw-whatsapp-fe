@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { getUserData } from "../../redux/actions";
 import { setUserInfo } from "../../redux/reducers";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
 type EditProfileProps = {
   handleClose: () => void;
 };
@@ -23,12 +25,11 @@ const EditProfile = (props: EditProfileProps) => {
   const [about, setAbout] = useState("");
   const [avatar, setAvatar] = useState<File | undefined>(undefined);
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
   const getToken = () => {
     return localStorage.getItem("accessToken");
   };
   useEffect(() => {
-    getMe();
     updateUser({
       name: userInfo?.name,
       email: userInfo?.email,
@@ -38,6 +39,10 @@ const EditProfile = (props: EditProfileProps) => {
     setName(userInfo?.name ?? "");
     console.log("now");
   }, [userInfo, updateUser]);
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -65,8 +70,9 @@ const EditProfile = (props: EditProfileProps) => {
           }
         );
         console.log(response.data);
-        getMe();
         await updateUser(response.data);
+        dispatch(getUserData());
+
         UpdateName();
       } catch (error) {
         console.error(error);
@@ -74,7 +80,7 @@ const EditProfile = (props: EditProfileProps) => {
     }
   };
   const UpdateName = async () => {
-    const editedData = { ...user, name: name };
+    const editedData = { name: name };
     try {
       let res = await fetch(`http://localhost:3001/users/me`, {
         method: "PUT",
@@ -86,29 +92,29 @@ const EditProfile = (props: EditProfileProps) => {
       });
       const data = await res.json();
       console.log(data);
-      getMe();
+      dispatch(getUserData());
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getMe = async () => {
-    try {
-      const res = await fetch(`${process.env.REACT_APP_BE_URL}/users/me`, {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
-        },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-      } else {
-        console.error("Error getting stories:");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getMe = async () => {
+  //   try {
+  //     const res = await fetch(`${process.env.REACT_APP_BE_URL}/users/me`, {
+  //       headers: {
+  //         Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
+  //       },
+  //     });
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       console.log(data);
+  //     } else {
+  //       console.error("Error loading user:");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="edit-profile">

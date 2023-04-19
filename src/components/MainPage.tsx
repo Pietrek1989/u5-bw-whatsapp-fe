@@ -35,6 +35,7 @@ const MainPage: React.FC = () => {
     if (accessToken && refreshToken) {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
 
