@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { getUserData } from "../redux/actions";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getHistory, getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
@@ -21,7 +21,7 @@ interface Message {
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-
+  const activeChat = useAppSelector(state => state.users.chats.active)
   const fetchData = async () => {
     const data1 = await dispatch(getUserData());
     console.log("dispatch shenanigans", data1);
@@ -44,6 +44,13 @@ const MainPage: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (activeChat !== "") {
+      dispatch(getHistory(activeChat))
+      console.log(activeChat)
+    }
+  },[])
 
   const chatPartner: ChatPartner = {
     name: "John Doe",

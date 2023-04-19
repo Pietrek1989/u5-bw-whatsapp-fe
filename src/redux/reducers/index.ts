@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 import type {PayloadAction} from "@reduxjs/toolkit"
 import { Store } from "../interface"
 import { Chat, Message, User } from "../../interfaces"
-import { getChats, getUserData } from "../actions"
+import { getChats, getHistory, getUserData } from "../actions"
 
 const initialState: Store = {
     userInfo: {
@@ -57,6 +57,10 @@ export const userSlice = createSlice({
         })
         builder.addCase(getChats.fulfilled, (state, action) => {
             state.chats.list = action.payload
+        })
+        builder.addCase(getHistory.fulfilled, (state, action) => {
+            const i = state.chats.list.findIndex(c => c._id === action.payload._id)
+            state.chats.list[i].messages = action.payload.messages
         })
     }
 })
