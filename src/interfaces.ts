@@ -18,5 +18,5 @@ export interface Message {
 		text?: string
 		media?: string
 	}
-	timestamp: number
+	createdAt: number
 }

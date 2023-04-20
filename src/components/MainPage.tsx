@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { getUserData } from "../redux/actions";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getHistory, getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
@@ -8,6 +8,8 @@ import ChatHeader from "../components/chat/ChatHeader";
 import MessageList from "../components/chat/MessageList";
 import MessageInput from "../components/chat/MeassageInput";
 import { Link } from "react-router-dom";
+import { io } from "socket.io-client";
+
 
 interface ChatPartner {
   name: string;
@@ -20,14 +22,14 @@ interface Message {
   timestamp: string;
 }
 
+const socket = io(`${process.env.REACT_APP_BE_URL}`, {transports: ["websocket"]})
+
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-
+  const activeChat = useAppSelector(state => state.users.chats.active)
   const fetchData = async () => {
     const data1 = await dispatch(getUserData());
     console.log("dispatch shenanigans", data1);
-
-    await dispatch(setActiveChat("1"));
   };
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -47,9 +49,25 @@ const MainPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (activeChat !== "") {
+      dispatch(getHistory(activeChat))
+      console.log(activeChat)
+    }
+  },[])
+
+  useEffect(() => {
+    socket.on("welcome", msg => {
+      console.log(msg)
+      socket.on("join-room", room => {
+        console.log(room)
+      })
+    })
+  },[])
+
   const chatPartner: ChatPartner = {
     name: "John Doe",
-    avatar: "https://example.com/avatar.jpg",
+    avatar: "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
   };
 
   const messages: Message[] = [
