@@ -1,7 +1,7 @@
-import { Chat } from "../interfaces"
+import { Chat, Message } from "../interfaces"
 
 export interface Store {
-    userInfo?: {
+    userInfo: {
         _id: string,
         name: string,
         email: string,
@@ -9,6 +9,7 @@ export interface Store {
     },
     chats: {
         active: string,
+        history: Message[],
         list: Chat[]
     },
     error?: string,

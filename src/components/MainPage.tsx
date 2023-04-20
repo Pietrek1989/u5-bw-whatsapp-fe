@@ -4,25 +4,9 @@ import { getHistory, getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
-import ChatHeader from "../components/chat/ChatHeader";
-import MessageList from "../components/chat/MessageList";
-import MessageInput from "../components/chat/MeassageInput";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
-
-
-interface ChatPartner {
-  name: string;
-  avatar: string;
-}
-
-interface Message {
-  sender: string;
-  content: string;
-  timestamp: string;
-}
-
-const socket = io(`${process.env.REACT_APP_BE_URL}`, {transports: ["websocket"]})
+import ChatWindow from "./chat/ChatWindow";
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -54,50 +38,8 @@ const MainPage: React.FC = () => {
       dispatch(getHistory(activeChat))
       console.log(activeChat)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
-  useEffect(() => {
-    socket.on("welcome", msg => {
-      console.log(msg)
-      socket.on("join-room", room => {
-        console.log(room)
-      })
-    })
-  },[])
-
-  const chatPartner: ChatPartner = {
-    name: "John Doe",
-    avatar: "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
-  };
-
-  const messages: Message[] = [
-    {
-      sender: "Jane Smith",
-      content: "Hey, how are you?",
-      timestamp: "10:15 AM",
-    },
-    {
-      sender: "John Doe",
-      content: "I am good. How about you?",
-      timestamp: "10:16 AM",
-    },
-    {
-      sender: "Jane Smith",
-      content: "Doing well, thanks!",
-      timestamp: "10:17 AM",
-    },
-    {
-      sender: "John Doe",
-      content: "Great! Have a nice day.",
-      timestamp: "10:18 AM",
-    },
-  ];
-
-  const currentUser = "Jane Smith";
-
-  const sendMessage = (messageContent: string) => {
-    // Handle sending a message
-  };
 
   if (
     !localStorage.getItem("accessToken") ||
@@ -143,19 +85,8 @@ const MainPage: React.FC = () => {
           <Col sm={4} md={3} lg={2} className="sidebar">
             <Sidebar />
           </Col>
-          <Col
-            sm={8}
-            md={9}
-            lg={10}
-            className="main-chat-window"
-            style={{ paddingLeft: 0 }}
-          >
-            <ChatHeader
-              chatPartnerName={chatPartner.name}
-              chatPartnerAvatar={chatPartner.avatar}
-            />
-            <MessageList messages={messages} currentUser={currentUser} />
-            <MessageInput sendMessage={sendMessage} />
+          <Col sm={8} md={9} lg={10} className="main-chat-window" style={{ paddingLeft: 0 }}>
+            <ChatWindow />
           </Col>
         </Row>
       </Container>

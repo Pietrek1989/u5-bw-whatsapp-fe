@@ -23,7 +23,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, currentUser }) => {
             {msgToDisplay?.messages.map((message, index) => (
                 <div key={index} className={`message ${message.sender._id !== userId ? 'sent' : 'received'}`}>
                     <p>{message.content.text}</p>
-                    <span>{message.createdAt}</span>
+                    <span>{message.createdAt.toString()}</span>
                 </div>
             ))}
         </div>
