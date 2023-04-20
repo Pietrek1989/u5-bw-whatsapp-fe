@@ -12,11 +12,11 @@ export interface Chat {
 }
 
 export interface Message {
-	_id: string,
+	_id?: string,
 	sender: User
 	content: {
 		text?: string
 		media?: string
 	}
-	createdAt: number
+	createdAt: Date
 }

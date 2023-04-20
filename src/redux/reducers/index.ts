@@ -15,6 +15,7 @@ const initialState: Store = {
   chats: {
     active: "",
     list: [],
+    history: []
   },
   error: "",
   loading: false,
@@ -35,24 +36,27 @@ export const userSlice = createSlice({
     },
     setHistory: (
       state,
-      action: PayloadAction<{ chatId: string; history: Message[] }>
+      //action: PayloadAction<{ chatId: string; history: Message[] }>
+      action: PayloadAction<Message[]>
     ) => {
-       const i = state.chats.list.findIndex(
+/*        const i = state.chats.list.findIndex(
         (c) => c._id === action.payload.chatId
       );
-      state.chats.list[i].messages = action.payload.history;
+      state.chats.list[i].messages = action.payload.history; */
     },
     newMessage: (
       state,
-      action: PayloadAction<{ chatId: string; message: Message }>
+      //action: PayloadAction<{ chatId: string; message: Message }>
+      action: PayloadAction<Message>
     ) => {
-      const i = state.chats.list.findIndex(
+/*       const i = state.chats.list.findIndex(
         (c) => c._id === action.payload.chatId
       );
       state.chats.list[i].messages = [
         ...state.chats.list[i].messages,
         action.payload.message,
-      ];
+      ]; */
+      state.chats.history.push(action.payload)
     },
   },
     extraReducers: (builder) => {
@@ -73,8 +77,9 @@ export const userSlice = createSlice({
             state.chats.list = action.payload
         })
         builder.addCase(getHistory.fulfilled, (state, action) => {
-            const i = state.chats.list.findIndex(c => c._id === action.payload._id)
-            state.chats.list[i].messages = action.payload.messages
+           /*  const i = state.chats.list.findIndex(c => c._id === action.payload._id)
+            state.chats.list[i].messages = action.payload.messages */
+            state.chats.history = action.payload.messages
 
         })
     }

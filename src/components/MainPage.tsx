@@ -4,24 +4,9 @@ import { getHistory, getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
-import ChatHeader from "../components/chat/ChatHeader";
-import MessageList from "../components/chat/MessageList";
-import MessageInput from "../components/chat/MeassageInput";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import ChatWindow from "./chat/ChatWindow";
-
-
-interface ChatPartner {
-  name: string;
-  avatar: string;
-}
-
-interface Message {
-  sender: string;
-  content: string;
-  timestamp: string;
-}
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -9,7 +9,7 @@ export interface Store {
     },
     chats: {
         active: string,
-        //history: Message[],
+        history: Message[],
         list: Chat[]
     },
     error?: string,
