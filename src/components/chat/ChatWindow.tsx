@@ -4,21 +4,20 @@ import '../../styles/MessageList.css';
 import { BsCameraVideo, BsTelephone, BsSearch } from 'react-icons/bs';
 import { RxDividerVertical } from 'react-icons/rx'
 import { SlArrowDown } from 'react-icons/sl'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BsEmojiLaughing, BsMic, BsPaperclip } from 'react-icons/bs'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { io } from 'socket.io-client';
 import { getChats, getHistory } from '../../redux/actions';
 import { newMessage } from '../../redux/reducers';
+import {format} from "date-fns"
 
 const socket = io(`${process.env.REACT_APP_BE_URL}`, {transports: ["websocket"]})
 const ChatWindow = () => {
+    const scrollRef = useRef<null|HTMLDivElement>(null)
     const dispatch = useAppDispatch()
     const user = useAppSelector(state => state.users.userInfo)
-
     const active = useAppSelector(state => state.users.chats.active)
-    //const chats = useAppSelector(state => state.users.chats.list)
-    //const history = chats.filter(c => c._id === active)
     const history = useAppSelector(state => state.users.chats.history)
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,27 +47,26 @@ const ChatWindow = () => {
     }, [localStorage])
 
     useEffect(() => {
-        console.log("history", history)
         if (active.length) {
             dispatch(getHistory(active))
             socket.emit("join-room", active)
         }
-        console.log("history again", history)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[active])
 
     useEffect(() => {
         socket.on("welcome", msg => {
-            console.log(msg)
-/*             socket.on("outgoing-msg", msg => {
-                dispatch(newMessage(msg))
-            }) */
             socket.on("incoming-msg", msg => {
                 console.log(msg)
-                dispatch(newMessage(msg.msg))
+                dispatch(newMessage(msg))
             }) 
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth", inline: "end"})
+    },[history])
 
     return (
         <>
@@ -87,9 +85,9 @@ const ChatWindow = () => {
         </div>
         <div className="message-list">
             {active.length > 0 && history.map((message, index) => (
-                <div key={index} className={`message ${message.sender._id === user._id ? 'sent' : 'received'}`}>
+                <div key={index} ref={scrollRef} className={`message ${message.sender._id === user._id ? 'sent' : 'received'}`}>
                     <p>{message.content.text}</p>
-                    <span>{message.createdAt.toString()}</span>
+                    <span>{message.createdAt && format(new Date(message.createdAt.toString()), "HH:mm")}</span>
                 </div>
             ))}
         </div>
