@@ -37,7 +37,7 @@ export const userSlice = createSlice({
       state,
       action: PayloadAction<{ chatId: string; history: Message[] }>
     ) => {
-      const i = state.chats.list.findIndex(
+       const i = state.chats.list.findIndex(
         (c) => c._id === action.payload.chatId
       );
       state.chats.list[i].messages = action.payload.history;
@@ -75,6 +75,7 @@ export const userSlice = createSlice({
         builder.addCase(getHistory.fulfilled, (state, action) => {
             const i = state.chats.list.findIndex(c => c._id === action.payload._id)
             state.chats.list[i].messages = action.payload.messages
+
         })
     }
 })

@@ -67,3 +67,14 @@ export const postNewMessage = createAsyncThunk(
         }
     }
 )
+
+/* export const addNewMessage = createAsyncThunk(
+    "users/addNewMessage",
+    async (msg: string, thunkAPI) => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+) */
