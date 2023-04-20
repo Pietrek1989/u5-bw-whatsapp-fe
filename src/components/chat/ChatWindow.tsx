@@ -1,7 +1,7 @@
 import '../../styles/ChatHeader.css';
 import '../../styles/MessageInput.css';
 import '../../styles/MessageList.css';
-import { BsCameraVideo, BsTelephone, BsSearch, BsThreeDotsVertical } from 'react-icons/bs';
+import { BsCameraVideo, BsTelephone, BsSearch } from 'react-icons/bs';
 import { RxDividerVertical } from 'react-icons/rx'
 import { SlArrowDown } from 'react-icons/sl'
 import React, { useEffect, useState } from 'react';
@@ -17,10 +17,9 @@ const ChatWindow = () => {
     const user = useAppSelector(state => state.users.userInfo)
 
     const active = useAppSelector(state => state.users.chats.active)
-    const chats = useAppSelector(state => state.users.chats.list)
+    //const chats = useAppSelector(state => state.users.chats.list)
     //const history = chats.filter(c => c._id === active)
     const history = useAppSelector(state => state.users.chats.history)
-    const userId = useAppSelector(state => state.users.userInfo?._id)
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
@@ -61,9 +60,9 @@ const ChatWindow = () => {
     useEffect(() => {
         socket.on("welcome", msg => {
             console.log(msg)
-            socket.on("outgoing-msg", msg => {
+/*             socket.on("outgoing-msg", msg => {
                 dispatch(newMessage(msg))
-            })
+            }) */
             socket.on("incoming-msg", msg => {
                 console.log(msg)
                 dispatch(newMessage(msg.msg))
