@@ -1,9 +1,6 @@
-.header {
-  height: 100%;
-}
 .edit-profile {
   position: absolute;
-  height: 100%;
+  height: 90vh;
   width: 100%;
   left: -100px;
   z-index: 9999;
@@ -140,4 +137,34 @@
 .edit-profile .yourname-title,
 .about-title {
   color: #075e54;
+}
+
+.edit-profile .btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+  background-color: white;
+  color: black;
+  border: none;
+  outline: 0;
+}
+.edit-profile .btn-secondary,
+.btn-secondary.focus {
+  background-color: white;
+  color: black;
+  border: none;
+  outline: 0;
+}
+.btn-secondary {
+  background-color: white;
+  color: black;
+  border: none;
+  outline: 0;
+}
+.edit-profile .btn-secondary.focus,
+.btn-secondary:focus,
+.btn-secondary:hover {
+  background-color: white;
+  color: black;
+  border: none;
+  outline: 0;
 }

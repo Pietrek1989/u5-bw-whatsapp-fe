@@ -1,7 +1,8 @@
 .search-field-container {
-    width: 100%;
+  width: 100%;
+  min-height: 10%;
 }
 
 .search-field {
-    width: 100%;
+  width: 100%;
 }

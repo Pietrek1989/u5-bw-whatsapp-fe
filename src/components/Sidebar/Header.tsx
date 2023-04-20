@@ -7,6 +7,10 @@ import { SlArrowDown } from "react-icons/sl";
 import EditProfile from "./EditProfile";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 interface User {
   name: string;
@@ -20,7 +24,10 @@ const user: User = {
 };
 
 const Header: React.FC = () => {
+  const userInfo = useSelector((state: RootState) => state.users.userInfo);
+
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpenProfile = () => {
     setIsProfileOpen(true);
@@ -29,6 +36,11 @@ const Header: React.FC = () => {
   const handleCloseProfile = () => {
     setIsProfileOpen(false);
   };
+  const handleLogOut = () => {
+    localStorage.setItem("accessToken", "");
+    localStorage.setItem("refreshToken", "");
+    navigate("/");
+  };
   return (
     <div className="header bg-white">
       <div
@@ -36,8 +48,8 @@ const Header: React.FC = () => {
         style={{ width: "200px" }}
       >
         <img
-          src={user.avatar}
-          alt={user.name}
+          src={userInfo?.avatar ? userInfo.avatar : user.avatar}
+          alt={userInfo?.name ? userInfo.name : user.name}
           className="avatar"
           onClick={handleOpenProfile}
         />
@@ -49,7 +61,22 @@ const Header: React.FC = () => {
         <IoPeopleOutline size={24} />
         <TbVectorBezierCircle size={24} />
         <BsPencilSquare size={24} />
-        <SlArrowDown size={24} />
+        <Dropdown>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <SlArrowDown size={24} />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#">New Group</Dropdown.Item>
+            <Dropdown.Item href="#">New Community</Dropdown.Item>
+            <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
+            <Dropdown.Item href="#">Select Chats</Dropdown.Item>
+            <Dropdown.Item href="#">Settings</Dropdown.Item>
+
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </div>
   );
