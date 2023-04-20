@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Store } from "../interface";
 import { Chat, Message, User } from "../../interfaces";
-import { getChats, getUserData } from "../actions";
+import { getChats, getUserData, getHistory } from "../actions";
 
 
 const initialState: Store = {
@@ -54,6 +54,7 @@ export const userSlice = createSlice({
         action.payload.message,
       ];
     },
+  },
     extraReducers: (builder) => {
         builder.addCase(getUserData.pending, (state, action) => {
             state.loading = true

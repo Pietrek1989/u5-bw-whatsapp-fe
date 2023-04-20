@@ -1,11 +1,17 @@
-import React from 'react';
 import { BsCameraVideo, BsTelephone, BsSearch, BsThreeDotsVertical } from 'react-icons/bs';
 import { RxDividerVertical } from 'react-icons/rx'
 import { SlArrowDown } from 'react-icons/sl'
 import '../../styles/ChatHeader.css';
+//import React, { useEffect, useState } from 'react';
 //import { useAppSelector } from '../../redux/hooks';
 
 const ChatHeader: React.FC = () => {
+    //const activeChat = useAppSelector(state => state.users.chats.active)
+/*     const participants = useAppSelector(state => state.users.chats.list.find(c => c._id === activeChat).members)
+    const [chatPartner, setChatPartner] = useState("")
+    useEffect(() => {
+        setChatPartner()
+    },[activeChat]) */
 /*     const activeChat = useAppSelector(state => state.users.chats.active)
 
     function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {

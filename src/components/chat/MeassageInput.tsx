@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BsEmojiLaughing, BsMic, BsPaperclip } from 'react-icons/bs'
 import '../../styles/MessageInput.css';
-import {io} from "socket.io-client"
 import { useAppSelector } from '../../redux/hooks';
 
 interface MessageInputProps {
