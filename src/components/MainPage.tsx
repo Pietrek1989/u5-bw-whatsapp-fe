@@ -10,7 +10,7 @@ import UsersList from "./Sidebar/UsersList";
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const activeChat = useAppSelector((state) => state.users.chats.active);
-  const [showUsers, setShowUsers] = useState(false)
+  const [showUsers, setShowUsers] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const fetchData = async () => {
     await dispatch(getUserData());
@@ -46,8 +46,6 @@ const MainPage: React.FC = () => {
   }, []);
 
   if (!isLogged) {
-    console.log("User is not logged in", localStorage.getItem("refreshToken"));
-
     return (
       <div
         className="d-flex justify-content-center align-items-center flex-column"
@@ -84,16 +82,17 @@ const MainPage: React.FC = () => {
       <Container fluid id="chat-container">
         <Row>
           <Col sm={4} md={3} lg={2} className="sidebar">
-            <Sidebar showUsers={setShowUsers}/>
-            {showUsers && <UsersList showUsers={showUsers} setShowUsers={setShowUsers} />}
-
+            <Sidebar showUsers={setShowUsers} />
+            {showUsers && (
+              <UsersList showUsers={showUsers} setShowUsers={setShowUsers} />
+            )}
           </Col>
           <Col
             sm={8}
             lg={9}
             xl={10}
             className="main-chat-window"
-            style={{ paddingLeft: 0 }}
+            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto" }}
           >
             <ChatWindow />
           </Col>
