@@ -88,13 +88,13 @@ const MainPage: React.FC = () => {
     return (
       <Container fluid id="chat-container">
         <Row>
-          <Col sm={4} md={3} lg={2} className="sidebar">
+          <Col sm={4} lg={3} xl={2} className="sidebar">
             <Sidebar />
           </Col>
           <Col
             sm={8}
-            md={9}
-            lg={10}
+            lg={9}
+            xl={10}
             className="main-chat-window"
             style={{ paddingLeft: 0 }}
           >
