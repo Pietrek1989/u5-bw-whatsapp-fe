@@ -86,11 +86,12 @@ const MainPage: React.FC = () => {
           <Col sm={4} md={3} lg={2} className="sidebar">
             <Sidebar showUsers={setShowUsers}/>
             {showUsers && <UsersList showUsers={showUsers} setShowUsers={setShowUsers} />}
+
           </Col>
           <Col
             sm={8}
-            md={9}
-            lg={10}
+            lg={9}
+            xl={10}
             className="main-chat-window"
             style={{ paddingLeft: 0 }}
           >

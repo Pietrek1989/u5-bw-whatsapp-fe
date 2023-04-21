@@ -73,17 +73,18 @@ const Header: React.FC<{showUsers: React.Dispatch<React.SetStateAction<boolean>>
             <SlArrowDown size={24} />
           </Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            <Dropdown.Item href="#">New Group</Dropdown.Item>
-            <Dropdown.Item href="#">New Community</Dropdown.Item>
-            <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
-            <Dropdown.Item href="#">Select Chats</Dropdown.Item>
-            <Dropdown.Item href="#">Settings</Dropdown.Item>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#">New Group</Dropdown.Item>
+              <Dropdown.Item href="#">New Community</Dropdown.Item>
+              <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
+              <Dropdown.Item href="#">Select Chats</Dropdown.Item>
+              <Dropdown.Item href="#">Settings</Dropdown.Item>
 
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </div>
     </div>
   );

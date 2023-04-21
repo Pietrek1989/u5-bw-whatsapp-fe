@@ -140,7 +140,7 @@
   color: #075e54;
 }
 
-.edit-profile .btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled).active,
 .btn-secondary:not(:disabled):not(.disabled):active,
 .show > .btn-secondary.dropdown-toggle {
   background-color: white;
@@ -148,7 +148,7 @@
   border: none;
   outline: 0;
 }
-.edit-profile .btn-secondary,
+.btn-secondary,
 .btn-secondary.focus {
   background-color: white;
   color: black;
@@ -160,6 +160,9 @@
   color: black;
   border: none;
   outline: 0;
+  padding: 0;
+  height: 24px;
+  width: 24px;
 }
 .edit-profile .btn-secondary.focus,
 .btn-secondary:focus,
@@ -168,4 +171,11 @@
   color: black;
   border: none;
   outline: 0;
+}
+
+.dropdown-toggle::after {
+  border: 0;
+}
+.header-controls svg {
+  width: 100%;
 }
