@@ -187,7 +187,7 @@ const EditProfile = (props: EditProfileProps) => {
                 value={name.toString()}
                 onChange={(e) => setName(e.target.value)}
               />
-              <BsFillPencilFill />
+              <BsFillPencilFill style={{ color: "#8696a0" }} />
             </div>
           </div>
 
