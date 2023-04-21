@@ -51,8 +51,6 @@ const MainPage: React.FC = () => {
   }, []);
 
   if (!isLogged) {
-    console.log("User is not logged in", localStorage.getItem("refreshToken"));
-
     return (
       <div
         className="d-flex justify-content-center align-items-center flex-column"
