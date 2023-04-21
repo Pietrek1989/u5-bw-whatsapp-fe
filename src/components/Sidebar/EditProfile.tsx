@@ -9,7 +9,8 @@ import { RootState } from "../../redux/store";
 import { getUserData } from "../../redux/actions";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { BsFillPencilFill } from "react-icons/bs"
+import { BsFillPencilFill } from "react-icons/bs";
+import { Alert, Button, Modal } from "react-bootstrap";
 type EditProfileProps = {
   handleClose: () => void;
 };
@@ -21,6 +22,7 @@ const EditProfile = (props: EditProfileProps) => {
     avatar: "",
     // about: "",
   });
+
   const [name, setName] = useState<String>("");
   const [avatar, setAvatar] = useState<File | undefined>(undefined);
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
@@ -71,7 +73,6 @@ const EditProfile = (props: EditProfileProps) => {
         console.log(response.data);
         updateUser(response.data);
         dispatch(getUserData());
-
       } catch (error) {
         console.error(error);
       }
@@ -138,7 +139,7 @@ const EditProfile = (props: EditProfileProps) => {
         <h5 className="m-0">Profile</h5>
       </div>
       <div className="profile-body">
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="avatar-container">
             <label htmlFor="avatar">
               <img
@@ -176,34 +177,52 @@ const EditProfile = (props: EditProfileProps) => {
               onChange={handleAvatarChange}
             />
           </div>
+
+          {avatar && (
+            <Alert variant="success" className="mb-3">
+              You selected:{" "}
+              <strong>
+                <em>{avatar.name}</em>
+              </strong>{" "}
+              <span className="ml-5">Press here</span>
+              <BsFillPencilFill
+                className="ml-2"
+                style={{ color: "#8696a0" }}
+                onClick={updateName}
+              />
+            </Alert>
+          )}
+
           <div className="form-group form-group-profile-details">
             <label htmlFor="name" className="yourname-title">
               Your name
             </label>
-            <div className="d-flex align-items-center">
-              <input
-                type="text"
-                id="name"
-                value={name.toString()}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <BsFillPencilFill style={{ color: "#8696a0" }} />
+            <div className="d-flex align-items-center justify-content-between">
+              <span>
+                <input
+                  type="text"
+                  id="name"
+                  value={name.toString()}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </span>
+              {name !== userInfo.name ? (
+                <span>
+                  <BsFillPencilFill
+                    style={{ color: "#8696a0" }}
+                    onClick={updateName}
+                  />
+                </span>
+              ) : (
+                <span></span>
+              )}
             </div>
           </div>
-
-          <button style={{
-            backgroundColor: "#075e54",
-            color: "#ffffff",
-            borderRadius: "4px",
-            padding: "8px 16px",
-            fontSize: "1.1rem",
-            fontWeight: "500",
-            border: "none",
-            cursor: "pointer",
-            letterSpacing: "0.05em",
-            outline: "none",
-          }} type="submit">Save</button>
         </form>
+        <p className="px-2">
+          This is not username or pin. This name will be visible to your
+          Whatsapp contacts
+        </p>
       </div>
     </div>
   );

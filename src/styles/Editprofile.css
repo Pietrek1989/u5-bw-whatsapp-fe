@@ -36,7 +36,6 @@
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-
 }
 
 .edit-profile .profile-body {
@@ -45,6 +44,12 @@
   height: calc(100% - 4rem);
   padding: 2rem 1rem;
   background-color: #ededed;
+  font-size: 0.8rem;
+}
+@media only screen and (max-width: 600px) {
+  .edit-profile .profile-body {
+    font-size: 1.3rem;
+  }
 }
 
 .edit-profile .avatar-container {
@@ -118,12 +123,9 @@
 .form-group textarea {
   width: 100%;
   padding: 0.5rem;
-  font-size: 1.2rem;
   border-radius: 4px;
   border: none;
-  font-size: 1rem;
-  padding: 0.8rem;
-  font-size: 1rem;
+  padding: inherit;
   color: #4a4a4a;
 }
 
@@ -132,6 +134,12 @@
   width: auto;
   resize: none;
   height: 3rem;
+  width: 8em;
+  padding: none;
+  flex-wrap: wrap;
+}
+.edit-profile .form-group svg {
+  width: 20px;
 }
 
 .edit-profile .slide-in {
@@ -164,7 +172,7 @@
 
 .btn-secondary:not(:disabled):not(.disabled).active,
 .btn-secondary:not(:disabled):not(.disabled):active,
-.show>.btn-secondary.dropdown-toggle {
+.show > .btn-secondary.dropdown-toggle {
   background-color: white;
   color: black;
   border: none;
@@ -200,10 +208,6 @@
 
 .dropdown-toggle::after {
   border: 0;
-}
-
-.header-controls svg {
-  width: 100%;
 }
 
 .edit-profile.show,
