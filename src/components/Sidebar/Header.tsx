@@ -84,6 +84,7 @@ const Header: React.FC<{ showUsers: React.Dispatch<React.SetStateAction<boolean>
           </Dropdown.Menu>
         </Dropdown>
       </div>
+    </div>
   );
 };
 
