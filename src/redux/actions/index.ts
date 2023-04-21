@@ -119,6 +119,7 @@ export const newChat = createAsyncThunk(
     "users/newChat",
     async (recipientId: string, thunkAPI) => {
         try {
+            console.log("new chat with", recipientId)
             const res = await fetch(`${process.env.REACT_APP_BE_URL}/chats`, {
                 method: "POST",
                 body: JSON.stringify({recipientId}),

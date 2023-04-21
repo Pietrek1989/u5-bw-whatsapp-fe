@@ -6,3 +6,10 @@
 .search-field {
   width: 100%;
 }
+
+.search-field input {
+  border: none;
+  color: #3b4a54;
+  background-color: #f0f2f5;
+  font-size: 14px;
+}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { BsPencilSquare } from "react-icons/bs"
 import { User } from "../../interfaces"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { newChat } from "../../redux/actions"
@@ -7,18 +6,21 @@ import { newChat } from "../../redux/actions"
 
 const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boolean>>, showUsers: boolean}> = ({showUsers, setShowUsers}) => {
     const user = useAppSelector(state => state.users.userInfo)
+    const [query, setQuery] = useState("")
     const dispatch = useAppDispatch()
     const [users, setUsers] = useState<User[]>([])
     const fetchUsers = async () => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_URL}/users`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_URL}/users?q=${query}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`
                 }
             })
             if (res.ok) {
                 const data = await res.json()
-                setUsers(data)
+                const me = data.find((u: User) => u._id === user._id)
+                const rest = data.filter((u: User) => u._id !== user._id)
+                setUsers([me, ...rest.sort((u1: User, u2: User) => (u1.name < u2.name ? -1 : 1))])
             } else {
                 console.log("Problem fetching users")
             }
@@ -29,7 +31,8 @@ const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boo
 
     useEffect(() => {
         fetchUsers()
-    },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[query])
 
     return (
         <div className="users-list">
@@ -53,6 +56,17 @@ const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boo
                 </button>
                 <h5 className="m-0">New Chat</h5>
             </div>
+            <div className="search-field-container bg-white align-items-center justify-content-between" style={{ borderBottom: "1px solid #ccc" }}>
+            <div className="search-field bg-white p-3 rounded d-flex align-items-center justify-content-between">
+                <input
+                    type="text"
+                    placeholder="Search contacts"
+                    className="form-control"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+            </div>
+        </div>
             <div className="users">
                 {users && users.map(u => 
                     <div key={u._id} className="contact-item" onClick={() => {dispatch(newChat(u._id))}}>
