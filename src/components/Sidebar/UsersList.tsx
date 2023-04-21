@@ -68,7 +68,7 @@ const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boo
             </div>
         </div>
             <div className="users">
-                {users && users.map(u => 
+                {users.length > 0  && users.map(u => 
                     <div key={u._id} className="contact-item" onClick={() => {dispatch(newChat(u._id))}}>
                         <img className="contact-avatar" src={u.avatar ? u.avatar : "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg"} alt={"bla"} />
                         <div className="contact-details">
