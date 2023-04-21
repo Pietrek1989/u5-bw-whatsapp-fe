@@ -192,7 +192,7 @@ const EditProfile = (props: EditProfileProps) => {
           </div>
 
           <button style={{
-            backgroundColor: "#25D366",
+            backgroundColor: "#075e54",
             color: "#ffffff",
             borderRadius: "4px",
             padding: "8px 16px",
