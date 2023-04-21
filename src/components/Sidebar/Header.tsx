@@ -86,7 +86,6 @@ const Header: React.FC<{showUsers: React.Dispatch<React.SetStateAction<boolean>>
           </Dropdown>
         </div>
       </div>
-    </div>
   );
 };
 

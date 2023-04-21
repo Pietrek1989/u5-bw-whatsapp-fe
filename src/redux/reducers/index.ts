@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Store } from "../interface";
 import { Chat, Message, User } from "../../interfaces";
-import { getChats, getUserData, getHistory } from "../actions";
+import { getChats, getUserData, getHistory, newChat } from "../actions";
 
 
 const initialState: Store = {
@@ -80,7 +80,14 @@ export const userSlice = createSlice({
            /*  const i = state.chats.list.findIndex(c => c._id === action.payload._id)
             state.chats.list[i].messages = action.payload.messages */
             state.chats.history = action.payload.messages
-
+        })
+        builder.addCase(newChat.fulfilled, (state, action) => {
+          if (state.chats.list.findIndex(c => c._id === action.payload._id) === -1) {
+            state.chats.list.push(action.payload)
+            state.chats.active = action.payload._id
+          } else {
+            state.chats.active = action.payload._id
+          }
         })
     }
 })

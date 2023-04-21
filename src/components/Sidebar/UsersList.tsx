@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import { Col, Modal } from "react-bootstrap"
 import { BsPencilSquare } from "react-icons/bs"
 import { User } from "../../interfaces"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { newChat } from "../../redux/actions"
 
 
 const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boolean>>, showUsers: boolean}> = ({showUsers, setShowUsers}) => {
+    const user = useAppSelector(state => state.users.userInfo)
+    const dispatch = useAppDispatch()
     const [users, setUsers] = useState<User[]>([])
     const fetchUsers = async () => {
         try {
@@ -29,7 +32,6 @@ const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boo
     },[])
 
     return (
-        <>
         <div className="users-list">
             <div className="users-header">
                 <button onClick={() => setShowUsers(false)}>
@@ -53,24 +55,15 @@ const UsersList: React.FC<{setShowUsers: React.Dispatch<React.SetStateAction<boo
             </div>
             <div className="users">
                 {users && users.map(u => 
-                    <p>
-                        {u.name}
-                    </p>
+                    <div key={u._id} className="contact-item" onClick={() => {dispatch(newChat(u._id))}}>
+                        <img className="contact-avatar" src={u.avatar ? u.avatar : "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg"} alt={"bla"} />
+                        <div className="contact-details">
+                            <h4 className="contact-name">{u.name} {u._id === user._id ? "(you)" : ""}</h4>
+                        </div>
+                    </div>
                 ) }
             </div>
-            <BsPencilSquare size={24} onClick={() =>setShowUsers(false)}/>
         </div>
-{/*         <Modal className="left fade" show={showUsers} onHide={() => setShowUsers(false)}>
-            <Modal.Header>
-                <Modal.Title>New Chat</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className="d-flex">
-                    <BsPencilSquare size={24} onClick={() =>setShowUsers(false)}/>
-                </div>
-            </Modal.Body>
-        </Modal> */}
-        </>
     )
 }
 export default UsersList
