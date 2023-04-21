@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getHistory, getUserData } from "../redux/actions";
-import { setActiveChat } from "../redux/reducers";
 import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
 import { Link } from "react-router-dom";
-import { io } from "socket.io-client";
 import ChatWindow from "./chat/ChatWindow";
-
-const socket = io(`${process.env.REACT_APP_BE_URL}`, {
-  transports: ["websocket"],
-});
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const activeChat = useAppSelector((state) => state.users.chats.active);
   const [isLogged, setIsLogged] = useState(false);
   const fetchData = async () => {
-    const data1 = await dispatch(getUserData());
-    console.log("dispatch shenanigans", data1);
+    await dispatch(getUserData());
   };
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
