@@ -43,40 +43,41 @@ const Header: React.FC = () => {
   };
   return (
     <div className="header bg-white">
-      <div
-        className="header-controls ml-auto d-flex align-items-center justify-content-between"
-        style={{ width: "200px" }}
-      >
-        <img
-          src={userInfo?.avatar ? userInfo.avatar : user.avatar}
-          alt={userInfo?.name ? userInfo.name : user.name}
-          className="avatar"
-          onClick={handleOpenProfile}
-        />
-        {isProfileOpen && (
-          <div className={`edit-profile${isProfileOpen ? " show" : ""}`}>
-            <EditProfile handleClose={handleCloseProfile} />
-          </div>
-        )}
-        <IoPeopleOutline size={24} />
-        <TbVectorBezierCircle size={24} />
-        <BsPencilSquare size={24} />
-        <Dropdown>
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-            <SlArrowDown size={24} />
-          </Dropdown.Toggle>
+      <div className="header-controls ml-auto d-flex align-items-center justify-content-between">
+        <div>
+          <img
+            src={userInfo?.avatar ? userInfo.avatar : user.avatar}
+            alt={userInfo?.name ? userInfo.name : user.name}
+            className="avatar"
+            onClick={handleOpenProfile}
+          />
+          {isProfileOpen && (
+            <div className={`edit-profile${isProfileOpen ? " show" : ""}`}>
+              <EditProfile handleClose={handleCloseProfile} />
+            </div>
+          )}
+        </div>
+        <div className="d-flex">
+          <IoPeopleOutline size={24} />
+          <TbVectorBezierCircle size={24} />
+          <BsPencilSquare size={24} />
+          <Dropdown>
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              <SlArrowDown size={24} />
+            </Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            <Dropdown.Item href="#">New Group</Dropdown.Item>
-            <Dropdown.Item href="#">New Community</Dropdown.Item>
-            <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
-            <Dropdown.Item href="#">Select Chats</Dropdown.Item>
-            <Dropdown.Item href="#">Settings</Dropdown.Item>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#">New Group</Dropdown.Item>
+              <Dropdown.Item href="#">New Community</Dropdown.Item>
+              <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
+              <Dropdown.Item href="#">Select Chats</Dropdown.Item>
+              <Dropdown.Item href="#">Settings</Dropdown.Item>
 
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </div>
     </div>
   );
