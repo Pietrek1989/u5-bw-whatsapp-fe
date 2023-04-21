@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import UsersList from "./UsersList";
 
 interface User {
   name: string;
@@ -23,10 +24,11 @@ const user: User = {
     "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
 };
 
-const Header: React.FC = () => {
+const Header: React.FC<{showUsers: React.Dispatch<React.SetStateAction<boolean>>}> = ({showUsers}) => {
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isUserListOpen, setIsUserListOpen] = useState(false)
   const navigate = useNavigate();
 
   const handleOpenProfile = () => {
@@ -43,28 +45,33 @@ const Header: React.FC = () => {
   };
   return (
     <div className="header bg-white">
-      <div className="header-controls ml-auto d-flex align-items-center justify-content-between">
-        <div>
-          <img
-            src={userInfo?.avatar ? userInfo.avatar : user.avatar}
-            alt={userInfo?.name ? userInfo.name : user.name}
-            className="avatar"
-            onClick={handleOpenProfile}
-          />
-          {isProfileOpen && (
-            <div className={`edit-profile${isProfileOpen ? " show" : ""}`}>
-              <EditProfile handleClose={handleCloseProfile} />
-            </div>
-          )}
-        </div>
-        <div className="d-flex">
-          <IoPeopleOutline size={24} />
-          <TbVectorBezierCircle size={24} />
-          <BsPencilSquare size={24} />
-          <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              <SlArrowDown size={24} />
-            </Dropdown.Toggle>
+      <div
+        className="header-controls ml-auto d-flex align-items-center justify-content-between"
+        style={{ width: "200px" }}
+      >
+        <img
+          src={userInfo?.avatar ? userInfo.avatar : user.avatar}
+          alt={userInfo?.name ? userInfo.name : user.name}
+          className="avatar"
+          onClick={handleOpenProfile}
+        />
+        {isProfileOpen && (
+          <div className={`edit-profile${isProfileOpen ? " show" : ""}`}>
+            <EditProfile handleClose={handleCloseProfile} />
+          </div>
+        )}
+        {isUserListOpen && (
+          <div className={`users-list${isUserListOpen ? " show" : ""}`}>
+            <UsersList showUsers={isUserListOpen} setShowUsers={setIsUserListOpen} />
+          </div>
+        )}
+        <IoPeopleOutline size={24} />
+        <TbVectorBezierCircle size={24} />
+        <BsPencilSquare size={24} onClick={() => setIsUserListOpen(true)}/>
+        <Dropdown>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <SlArrowDown size={24} />
+          </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Item href="#">New Group</Dropdown.Item>

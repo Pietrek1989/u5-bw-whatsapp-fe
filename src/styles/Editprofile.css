@@ -1,4 +1,4 @@
-.edit-profile {
+.edit-profile, .users-list {
   position: absolute;
   height: 90vh;
   width: 100%;
@@ -12,11 +12,11 @@
   left: 0;
 }
 
-.edit-profile.show {
+.edit-profile.show, .users-list.show {
   left: 0;
 }
 
-.edit-profile .profile-header {
+.edit-profile .profile-header, .users-list .users-header  {
   display: flex;
   align-items: center;
   padding: 0.8rem 1.2rem;
@@ -25,7 +25,8 @@
   font-size: 1.3rem;
 }
 
-.edit-profile .profile-header button {
+
+.edit-profile .profile-header button, .users-list .users-header button {
   background-color: transparent;
   border: none;
   color: #fff;
