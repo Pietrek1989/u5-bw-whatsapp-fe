@@ -86,7 +86,7 @@ const MainPage: React.FC = () => {
     return (
       <Container fluid id="chat-container">
         <Row>
-          <Col sm={4} lg={3} xl={2} className="sidebar">
+          <Col sm={4} lg={3} xl={2} className="sidebar sidebar-prnt">
             <Sidebar />
           </Col>
           <Col

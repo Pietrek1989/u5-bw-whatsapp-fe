@@ -8,7 +8,10 @@
   max-width: 100%;
 }
 .header-controls {
-  max-width: 100%;
+  max-width: 100% !important;
+}
+.header-controls svg {
+  margin-right: 4px;
 }
 
 .user-info {
