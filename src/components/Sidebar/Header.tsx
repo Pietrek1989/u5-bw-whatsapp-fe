@@ -24,7 +24,7 @@ const user: User = {
     "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
 };
 
-const Header: React.FC<{showUsers: React.Dispatch<React.SetStateAction<boolean>>}> = ({showUsers}) => {
+const Header: React.FC<{ showUsers: React.Dispatch<React.SetStateAction<boolean>> }> = ({ showUsers }) => {
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -67,24 +67,23 @@ const Header: React.FC<{showUsers: React.Dispatch<React.SetStateAction<boolean>>
         )}
         <IoPeopleOutline size={24} />
         <TbVectorBezierCircle size={24} />
-        <BsPencilSquare size={24} onClick={() => setIsUserListOpen(true)}/>
+        <BsPencilSquare size={24} onClick={() => setIsUserListOpen(true)} />
         <Dropdown>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             <SlArrowDown size={24} />
           </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">New Group</Dropdown.Item>
-              <Dropdown.Item href="#">New Community</Dropdown.Item>
-              <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
-              <Dropdown.Item href="#">Select Chats</Dropdown.Item>
-              <Dropdown.Item href="#">Settings</Dropdown.Item>
+          <Dropdown.Menu>
+            <Dropdown.Item href="#">New Group</Dropdown.Item>
+            <Dropdown.Item href="#">New Community</Dropdown.Item>
+            <Dropdown.Item href="#">Starred Messages</Dropdown.Item>
+            <Dropdown.Item href="#">Select Chats</Dropdown.Item>
+            <Dropdown.Item href="#">Settings</Dropdown.Item>
 
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
   );
 };
