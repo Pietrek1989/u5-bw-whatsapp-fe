@@ -68,19 +68,19 @@ const EditProfile = (props: EditProfileProps) => {
           }
         );
         console.log(response.data);
-        await updateUser(response.data);
+        updateUser(response.data);
         dispatch(getUserData());
 
-        UpdateName();
       } catch (error) {
         console.error(error);
       }
     }
+    updateName();
   };
-  const UpdateName = async () => {
+  const updateName = async () => {
     const editedData = { name: name };
     try {
-      let res = await fetch(`http://localhost:3001/users/me`, {
+      let res = await fetch(`${process.env.REACT_APP_BE_URL}/users/me`, {
         method: "PUT",
         body: JSON.stringify(editedData),
         headers: new Headers({
