@@ -187,7 +187,18 @@ const EditProfile = (props: EditProfileProps) => {
             />
           </div>
 
-          <button type="submit">Save</button>
+          <button style={{
+            backgroundColor: "#25D366",
+            color: "#ffffff",
+            borderRadius: "4px",
+            padding: "8px 16px",
+            fontSize: "1.1rem",
+            fontWeight: "500",
+            border: "none",
+            cursor: "pointer",
+            letterSpacing: "0.05em",
+            outline: "none",
+          }} type="submit">Save</button>
         </form>
       </div>
     </div>

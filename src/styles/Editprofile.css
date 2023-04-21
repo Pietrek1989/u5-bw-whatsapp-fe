@@ -26,6 +26,7 @@
   background-color: #075e54;
   color: #fff;
   font-size: 1.3rem;
+  border-bottom: 1px solid #d0d0d0;
 }
 
 .edit-profile .profile-header button,
@@ -35,12 +36,15 @@
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
+
 }
 
 .edit-profile .profile-body {
   padding-top: 1rem;
   background-color: #f0f2f5;
   height: calc(100% - 4rem);
+  padding: 2rem 1rem;
+  background-color: #ededed;
 }
 
 .edit-profile .avatar-container {
@@ -56,6 +60,8 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  width: 130px;
+  height: 130px;
 }
 
 .edit-profile .avatar-container label {
@@ -73,6 +79,7 @@
   padding: 0;
   position: relative;
 }
+
 .edit-profile .hover-img-text {
   position: absolute;
   width: 100%;
@@ -81,9 +88,11 @@
   border-radius: 50%;
   opacity: 0;
 }
+
 .edit-profile .hover-img-text:hover {
   opacity: 1;
 }
+
 .edit-profile .image-tag {
   position: absolute;
   font-size: 1rem;
@@ -113,6 +122,9 @@
   border-radius: 4px;
   border: none;
   font-size: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #4a4a4a;
 }
 
 .edit-profile .form-group textarea {
@@ -121,6 +133,7 @@
   resize: none;
   height: 3rem;
 }
+
 .edit-profile .slide-in {
   animation: slide-in 0.3s forwards;
 }
@@ -129,6 +142,7 @@
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0%);
   }
@@ -137,20 +151,26 @@
 .edit-profile .form-group-profile-details {
   background-color: white;
   width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
 }
+
 .edit-profile .yourname-title,
 .about-title {
   color: #075e54;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active,
 .btn-secondary:not(:disabled):not(.disabled):active,
-.show > .btn-secondary.dropdown-toggle {
+.show>.btn-secondary.dropdown-toggle {
   background-color: white;
   color: black;
   border: none;
   outline: 0;
 }
+
 .btn-secondary,
 .btn-secondary.focus {
   background-color: white;
@@ -158,6 +178,7 @@
   border: none;
   outline: 0;
 }
+
 .btn-secondary {
   background-color: white;
   color: black;
@@ -167,6 +188,7 @@
   height: 24px;
   width: 24px;
 }
+
 .edit-profile .btn-secondary.focus,
 .btn-secondary:focus,
 .btn-secondary:hover {
@@ -179,13 +201,16 @@
 .dropdown-toggle::after {
   border: 0;
 }
+
 .header-controls svg {
   width: 100%;
 }
+
 .edit-profile.show,
 .users-list.show {
   max-height: 100%;
 }
+
 .users-list {
   overflow: auto;
   max-height: 100%;
