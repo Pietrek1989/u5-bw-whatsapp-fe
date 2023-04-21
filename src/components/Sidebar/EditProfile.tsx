@@ -9,6 +9,7 @@ import { RootState } from "../../redux/store";
 import { getUserData } from "../../redux/actions";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
+import { BsFillPencilFill } from "react-icons/bs"
 type EditProfileProps = {
   handleClose: () => void;
 };
@@ -179,12 +180,15 @@ const EditProfile = (props: EditProfileProps) => {
             <label htmlFor="name" className="yourname-title">
               Your name
             </label>
-            <input
-              type="text"
-              id="name"
-              value={name.toString()}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div className="d-flex align-items-center">
+              <input
+                type="text"
+                id="name"
+                value={name.toString()}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <BsFillPencilFill />
+            </div>
           </div>
 
           <button style={{
