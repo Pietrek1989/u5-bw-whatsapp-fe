@@ -1,5 +1,5 @@
 import "../../styles/PlaceHolder.css"
-import { AiFillLock } from 'react-icons/ai'
+import { FaLock } from 'react-icons/fa'
 const PlaceHolder = () => {
     return (
         <div style={{ width: "100%", height: "70vh", backgroundColor: "#f0f2f5" }}>
@@ -9,7 +9,7 @@ const PlaceHolder = () => {
                 <p className="mb-0" style={{ paddingTop: '10px', color: "#667781", fontSize: "14px", fontWeight: "400" }}>Send and receive messages without keeping your phone online.</p>
                 <p style={{ color: "#667781", fontSize: "14px", fontWeight: "400" }}>Use WhatsApp on up to 4 linked devices and 1 phone at the same time.</p>
                 <div style={{ paddingTop: "60px", color: "#667781", fontSize: "14px", fontWeight: "400" }} className="d-flex align-items-center">
-                    <AiFillLock />
+                    <FaLock />
                     <p className="mb-0 ml-2">End-to-end encrypted</p>
                 </div>
 
