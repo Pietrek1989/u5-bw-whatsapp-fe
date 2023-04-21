@@ -115,18 +115,30 @@ export const postNewMessage = createAsyncThunk(
   }
 );
 
-/* export const addNewMessage = createAsyncThunk(
-    "users/addNewMessage",
-    async (msg: string, thunkAPI) => {
+export const newChat = createAsyncThunk(
+    "users/newChat",
+    async (recipientId: string, thunkAPI) => {
         try {
-            
+            const res = await fetch(`${process.env.REACT_APP_BE_URL}/chats`, {
+                method: "POST",
+                body: JSON.stringify({recipientId}),
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem(
+                        "accessToken"
+                      )}`,
+                      "Content-Type": "application/json",
+                }
+            })
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+                return data
+            }
         } catch (error) {
-            
+            return thunkAPI.rejectWithValue(error);
         }
     }
-) */
-//   }
-// );
+)
 
 export const refreshAccessToken = async () => {
   const refreshToken = localStorage.getItem("refreshToken");
