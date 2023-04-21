@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_BE_URL as String;
   const [isIncorrect, setIsIncorrect] = useState(false);
-
+  const [isLoading, setisLoading] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const logIn = async (formValues: FormValues) => {
     try {
@@ -30,6 +30,7 @@ const Login = () => {
         console.log(data);
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
+        setisLoading(false);
         setIsIncorrect(false);
         navigate(
           `/main?accessToken=${data.accessToken}&refreshToken=${data.refreshToken}`
@@ -44,6 +45,7 @@ const Login = () => {
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setisLoading(true);
     logIn(formValues);
     // Handle form submission
   };
@@ -112,6 +114,13 @@ const Login = () => {
                   <Link to={"/register"}>register</Link>
                 </p>
               </Form>
+              {isLoading && (
+                <p>
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </p>
+              )}
               {isIncorrect && (
                 <p className="text-danger">Wrong password, try again!</p>
               )}
