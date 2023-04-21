@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Header.css";
 import { IoPeopleOutline } from "react-icons/io5";
-import { BsPencilSquare } from "react-icons/bs";
+import { BiMessageDetail } from "react-icons/bi";
 import { TbVectorBezierCircle } from "react-icons/tb";
 import { SlArrowDown } from "react-icons/sl";
 import EditProfile from "./EditProfile";
@@ -69,7 +69,8 @@ const Header: React.FC = () => {
         )}
         <IoPeopleOutline size={24} />
         <TbVectorBezierCircle size={24} />
-        <BsPencilSquare size={24} onClick={() => setIsUserListOpen(true)} />
+        <BiMessageDetail size={24} onClick={() => setIsUserListOpen(true)} />
+
         <Dropdown>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             <SlArrowDown size={24} />

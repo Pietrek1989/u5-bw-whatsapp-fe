@@ -4,6 +4,9 @@
   min-height: 10%;
   max-width: 100%;
 }
+.header svg:hover {
+  cursor: pointer;
+}
 .header-controls {
   max-width: 100% !important;
 }
