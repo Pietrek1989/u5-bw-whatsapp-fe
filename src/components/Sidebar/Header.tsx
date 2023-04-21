@@ -23,11 +23,13 @@ const user: User = {
     "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
 };
 
-const Header: React.FC<{ showUsers: React.Dispatch<React.SetStateAction<boolean>> }> = ({ showUsers }) => {
+const Header: React.FC<{
+  showUsers: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ showUsers }) => {
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isUserListOpen, setIsUserListOpen] = useState(false)
+  const [isUserListOpen, setIsUserListOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleOpenProfile = () => {
@@ -61,7 +63,10 @@ const Header: React.FC<{ showUsers: React.Dispatch<React.SetStateAction<boolean>
         )}
         {isUserListOpen && (
           <div className={`users-list${isUserListOpen ? " show" : ""}`}>
-            <UsersList showUsers={isUserListOpen} setShowUsers={setIsUserListOpen} />
+            <UsersList
+              showUsers={isUserListOpen}
+              setShowUsers={setIsUserListOpen}
+            />
           </div>
         )}
         <IoPeopleOutline size={24} />
@@ -84,6 +89,7 @@ const Header: React.FC<{ showUsers: React.Dispatch<React.SetStateAction<boolean>
           </Dropdown.Menu>
         </Dropdown>
       </div>
+    </div>
   );
 };
 
