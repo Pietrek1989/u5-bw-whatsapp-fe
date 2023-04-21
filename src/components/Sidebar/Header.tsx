@@ -23,9 +23,7 @@ const user: User = {
     "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
 };
 
-const Header: React.FC<{
-  showUsers: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ showUsers }) => {
+const Header: React.FC = () => {
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
