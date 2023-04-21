@@ -12,6 +12,7 @@ import { getChats, getHistory } from '../../redux/actions';
 import { newMessage } from '../../redux/reducers';
 import {format} from "date-fns"
 import { User } from '../../interfaces';
+import PlaceHolder from './PlaceHolder';
 
 const socket = io(`${process.env.REACT_APP_BE_URL}`, {transports: ["websocket"]})
 const ChatWindow = () => {
@@ -76,7 +77,7 @@ const ChatWindow = () => {
 
     return (
         <>
-        {active.length > 0 && partner && <><div className="chat-header">
+        {active.length > 0 && partner ? <><div className="chat-header">
             <div className='d-flex align-items-center justify-content-between'>
                 <img src={partner.avatar ? partner.avatar : "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg"} alt={"alt"} />
                 <h2>{partner.name}</h2>
@@ -107,7 +108,7 @@ const ChatWindow = () => {
                 placeholder="Type a message..."
             />
             <BsMic className="icon" />
-        </form></>}
+        </form></> : <PlaceHolder />}
         </>
     )
 }
