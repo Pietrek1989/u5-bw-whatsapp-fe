@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useEffect } from "react";
-=======
 import { useEffect, useState } from "react";
->>>>>>> feature/Profile-edit
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getHistory, getUserData } from "../redux/actions";
 import { setActiveChat } from "../redux/reducers";
@@ -10,21 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
-<<<<<<< HEAD
 import ChatWindow from "./chat/ChatWindow";
-=======
-
-interface ChatPartner {
-  name: string;
-  avatar: string;
-}
-
-interface Message {
-  sender: string;
-  content: string;
-  timestamp: string;
-}
->>>>>>> feature/Profile-edit
 
 const socket = io(`${process.env.REACT_APP_BE_URL}`, {
   transports: ["websocket"],
@@ -32,12 +14,8 @@ const socket = io(`${process.env.REACT_APP_BE_URL}`, {
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-<<<<<<< HEAD
-  const activeChat = useAppSelector(state => state.users.chats.active)
-=======
   const activeChat = useAppSelector((state) => state.users.chats.active);
   const [isLogged, setIsLogged] = useState(false);
->>>>>>> feature/Profile-edit
   const fetchData = async () => {
     const data1 = await dispatch(getUserData());
     console.log("dispatch shenanigans", data1);
@@ -66,62 +44,11 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (activeChat !== "") {
-<<<<<<< HEAD
-      dispatch(getHistory(activeChat))
-      console.log(activeChat)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-=======
       dispatch(getHistory(activeChat));
       console.log(activeChat);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    socket.on("welcome", (msg) => {
-      console.log(msg);
-      socket.on("join-room", (room) => {
-        console.log(room);
-      });
-    });
-  }, []);
-
-  const chatPartner: ChatPartner = {
-    name: "John Doe",
-    avatar:
-      "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg",
-  };
-
-  const messages: Message[] = [
-    {
-      sender: "Jane Smith",
-      content: "Hey, how are you?",
-      timestamp: "10:15 AM",
-    },
-    {
-      sender: "John Doe",
-      content: "I am good. How about you?",
-      timestamp: "10:16 AM",
-    },
-    {
-      sender: "Jane Smith",
-      content: "Doing well, thanks!",
-      timestamp: "10:17 AM",
-    },
-    {
-      sender: "John Doe",
-      content: "Great! Have a nice day.",
-      timestamp: "10:18 AM",
-    },
-  ];
-
-  const currentUser = "Jane Smith";
-
-  const sendMessage = (messageContent: string) => {
-    // Handle sending a message
-  };
->>>>>>> feature/Profile-edit
 
   if (!isLogged) {
     console.log("User is not logged in", localStorage.getItem("refreshToken"));
@@ -164,7 +91,13 @@ const MainPage: React.FC = () => {
           <Col sm={4} md={3} lg={2} className="sidebar">
             <Sidebar />
           </Col>
-          <Col sm={8} md={9} lg={10} className="main-chat-window" style={{ paddingLeft: 0 }}>
+          <Col
+            sm={8}
+            md={9}
+            lg={10}
+            className="main-chat-window"
+            style={{ paddingLeft: 0 }}
+          >
             <ChatWindow />
           </Col>
         </Row>
