@@ -5,12 +5,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import Sidebar from "./Sidebar/SideBar";
 import { Link } from "react-router-dom";
 import ChatWindow from "./chat/ChatWindow";
-import UsersList from "./Sidebar/UsersList";
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const activeChat = useAppSelector((state) => state.users.chats.active);
-  const [showUsers, setShowUsers] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const fetchData = async () => {
     await dispatch(getUserData());
@@ -83,17 +81,14 @@ const MainPage: React.FC = () => {
       <Container fluid id="chat-container">
         <Row>
           <Col sm={4} md={3} lg={2} className="sidebar">
-            <Sidebar showUsers={setShowUsers} />
-            {showUsers && (
-              <UsersList showUsers={showUsers} setShowUsers={setShowUsers} />
-            )}
+            <Sidebar />
           </Col>
           <Col
             sm={8}
-            lg={9}
-            xl={10}
+            md={9}
+            lg={10}
             className="main-chat-window"
-            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto" }}
+            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto", paddingInline: 0 }}
           >
             <ChatWindow />
           </Col>
