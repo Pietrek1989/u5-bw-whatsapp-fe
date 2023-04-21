@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { getUserData } from "../../redux/actions";
-import { setUserInfo } from "../../redux/reducers";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 type EditProfileProps = {
@@ -22,7 +21,6 @@ const EditProfile = (props: EditProfileProps) => {
     // about: "",
   });
   const [name, setName] = useState<String>("");
-  const [about, setAbout] = useState("");
   const [avatar, setAvatar] = useState<File | undefined>(undefined);
   const userInfo = useSelector((state: RootState) => state.users.userInfo);
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();

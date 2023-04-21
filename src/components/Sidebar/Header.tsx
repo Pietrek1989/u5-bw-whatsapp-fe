@@ -5,7 +5,6 @@ import { BsPencilSquare } from "react-icons/bs";
 import { TbVectorBezierCircle } from "react-icons/tb";
 import { SlArrowDown } from "react-icons/sl";
 import EditProfile from "./EditProfile";
-import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
