@@ -10,11 +10,6 @@ const ContactsList: React.FC = () => {
     <div className="contacts-list">
       {chats.length > 0 &&
         chats.map((c) => <ContactItem key={c._id} chat={c} />)}
-      <div>Person</div>
-      <div>Person</div>
-      <div>Person</div>
-      <div>Person</div>
-      <div>Person</div>
     </div>
   );
 };

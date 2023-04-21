@@ -19,5 +19,9 @@ body {
 #chat-container {
   position: relative;
   top: -100px;
+  padding-inline: 0;
+}
+#chat-container .row {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-inline: 15px;
 }

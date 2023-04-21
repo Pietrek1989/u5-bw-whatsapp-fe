@@ -94,7 +94,7 @@ const MainPage: React.FC = () => {
             lg={9}
             xl={10}
             className="main-chat-window"
-            style={{ paddingLeft: 0 }}
+            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto" }}
           >
             <ChatWindow />
           </Col>
