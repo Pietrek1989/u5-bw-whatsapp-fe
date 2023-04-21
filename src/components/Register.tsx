@@ -7,7 +7,7 @@ import { FormValuesRegister } from "../types";
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -89,9 +89,9 @@ const Register = () => {
                   <Form.Control
                     type="name"
                     placeholder="Enter name"
-                    value={formValues.username}
+                    value={formValues.name}
                     onChange={(e) =>
-                      setFormValues({ ...formValues, username: e.target.value })
+                      setFormValues({ ...formValues, name: e.target.value })
                     }
                   />
                 </Form.Group>

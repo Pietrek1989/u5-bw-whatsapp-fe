@@ -4,7 +4,7 @@ export interface FormValues {
 }
 
 export interface FormValuesRegister {
-  username: string;
+  name: string;
   email: string;
   password: string;
 }
