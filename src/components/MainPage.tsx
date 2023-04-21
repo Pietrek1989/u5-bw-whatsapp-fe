@@ -90,10 +90,10 @@ const MainPage: React.FC = () => {
           </Col>
           <Col
             sm={8}
-            lg={9}
-            xl={10}
+            md={9}
+            lg={10}
             className="main-chat-window"
-            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto" }}
+            style={{ borderBottom: "5px solid #42cba5", overflowY: "auto", paddingInline: 0 }}
           >
             <ChatWindow />
           </Col>
