@@ -5,7 +5,6 @@
 This project is a WhatsApp clone - a real-time chat application. Built using React for a dynamic front-end, it mimics the essential features of WhatsApp. Express.js is used on the backend to handle API requests and authentication. Real-time communication is achieved with Socket.IO for instantaneous message exchange. MongoDB is employed for efficient and scalable data storage. This combination of technologies provides a seamless chatting experience in a scalable, real-time environment.
 
 ## URL
-https://pietrek1989.github.io/fs-nov22-buildweek-1/
 
 ### TEAM
 [@Pietrek1989](https://github.com/Pietrek1989)
