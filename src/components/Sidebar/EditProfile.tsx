@@ -188,7 +188,7 @@ const EditProfile = (props: EditProfileProps) => {
               <BsFillPencilFill
                 className="ml-2"
                 style={{ color: "#8696a0" }}
-                onClick={updateName}
+                onClick={handleSubmit}
               />
             </Alert>
           )}
